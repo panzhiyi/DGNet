@@ -1,0 +1,2 @@
+method,Area,OA,mACC,mIoU,ceiling,floor,wall,beam,column,window,door,chair,table,bookcase,sofa,board,clutter,best_epoch,log_path,wandb link
+pointnext-01-DGNet-lads,5,89.35,74.55,67.86,94.13,98.06,81.04,0.09,25.98,58.95,67.58,80.93,89.65,81.08,75.15,70.35,59.14,53,/home/pzy/code/DGNet/log/s3dis_vMF/s3dis_vMF-train-pointnext-01-DGNet-lads-ngpus1-seed4453-20241203-034911-46i9vxQkyiHmbnM43VYvjE,-

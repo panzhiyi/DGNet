@@ -1,0 +1,42 @@
+# data augmentation
+dataset:
+  common:
+    NAME: S3DIS
+    data_root: /dataset
+    data_raw: sparse
+    test_area: 5
+    voxel_size: 0.04
+    rate: 4
+  train:
+    split: train
+    voxel_max: 12000
+    loop: 30  # here, the training has been looped 30 times. therefore, the training epochs do not need much.
+    presample: False
+  val:
+    split: val
+    voxel_max: 12000
+    presample: True
+  test:
+    split: test
+    voxel_max: null
+    presample: False 
+
+model:
+  NAME: BaseSeg
+  encoder_args:
+    NAME: RandLANet
+    in_channels: 7
+    num_classes: 13
+
+datatransforms:
+  train: [ChromaticAutoContrast, PointsToTensor, PointCloudScaling, PointCloudXYZAlign, PointCloudJitter, ChromaticDropGPU, ChromaticNormalize]
+  val: [PointsToTensor, PointCloudXYZAlign, ChromaticNormalize]
+  vote: [ChromaticDropGPU]
+  kwargs:
+    color_drop: 0.2
+    gravity_dim: 2
+    scale: [0.9, 1.1]
+    jitter_sigma: 0.005
+    jitter_clip: 0.02
+    
+batch_size: 8
