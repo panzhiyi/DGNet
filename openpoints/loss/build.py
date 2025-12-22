@@ -13,19 +13,6 @@ LOSS.register_module(name='CrossEntropyLoss', module=CrossEntropyLoss)
 LOSS.register_module(name='BCEWithLogitsLoss', module=BCEWithLogitsLoss)
 
 @LOSS.register_module()
-class tCE(torch.nn.Module):
-    def __init__(self, thr=0.2):
-        super(tCE, self).__init__()
-        self.thr = thr
-        
-    def forward(self, logit, target):
-        logit = F.softmax(logit, dim=1)
-        logit = torch.clamp(logit, min=eps, max=1.0)
-        label_one_hot = F.one_hot(target, self.num_classes).float().to(logit.device)
-        return loss.mean()
-        return loss
-
-@LOSS.register_module()
 class vMFLoss(torch.nn.Module):
     def __init__(self, label_smoothing=0.2,
                  ignore_index=255,
